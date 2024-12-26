@@ -8,6 +8,7 @@
 #define KC_PSTE LCTL(KC_V)
 #define KC_UNDO LCTL(KC_Z)
 #define KC_REDO RCS(KC_Z) 
+#define KC_SAVE LCTL(KC_S) 
 
 #define DOT_EXLM LT(0,KC_DOT)
 #define COMM_MINS LT(0,KC_COMM)
@@ -21,20 +22,21 @@
 // layer aliases
 #define _DEFAULT 0
 #define _QWERTY 1
-#define _MEDIA 2
-#define _NAV 3
-#define _MOUSE 4
-#define _SYM 5
-#define _NUM 6
-#define _FUN 7
-#define _GAME 8
-#define _GAMENUM 9
+#define _COLEMAKDH 2
+#define _MEDIA 3
+#define _NAV 4
+#define _MOUSE 5
+#define _SYM 6
+#define _NUM 7
+#define _FUN 8
+#define _GAME 9
+#define _GAMENUM 10
+
 
 #define BOTH_SHIFTS_TURNS_ON_CAPS_WORD
 
-char laydef = 'D'; //variable current default layer; 'D' for _DEFAULT, 'Q' for _QWERTY, 'G' for _GAME
+char laydef = 'D'; // variable current default layer; 'D' for _DEFAULT, 'Q' for _QWERTY, 'G' for _GAME
 
-//call default layer state
 layer_state_t default_layer_state_set_user(layer_state_t state) {
     switch(biton32(state)){
         case _DEFAULT:
@@ -48,6 +50,10 @@ layer_state_t default_layer_state_set_user(layer_state_t state) {
         case _GAME:
         laydef = 'G';
         rgblight_sethsv (0, 255, 100); // Green
+        break;
+        case _COLEMAKDH:
+        laydef = 'C';
+        rgblight_sethsv (240, 255, 100); // Mint
         break;
     };
     return state;
@@ -82,6 +88,8 @@ layer_state_t layer_state_set_user(layer_state_t state) {
           rgblight_sethsv (0, 255, 100); // Green
         } else if(laydef == 'Q') {
           rgblight_sethsv (80, 255, 100); // Orange
+        } else if(laydef == 'C') {
+          rgblight_sethsv (240 , 255, 100); // Mint
         } else {
           rgblight_sethsv (0, 0, 100); // White for Default
         }
@@ -135,19 +143,24 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     LGUI_T(KC_A), LALT_T(KC_S), LCTL_T(KC_H), LSFT_T(KC_T), KC_G, KC_Y, RSFT_T(KC_N), LCTL_T(KC_E), LALT_T(KC_O), LGUI_T(KC_I), 
     KC_Z, KC_X, KC_M, KC_C, KC_V, KC_K, KC_L, COMM_MINS, DOT_EXLM, SLSH_UNDS, 
     LT(_MEDIA,KC_ESC), LT(_NAV,KC_SPC), LT(_MOUSE,KC_TAB), LT(_SYM,KC_ENT), LT(_NUM,KC_BSPC), LT(_FUN,KC_DEL)), // Default
+    [_COLEMAKDH] = LAYOUT_split_3x5_3(
+    KC_Q, KC_W, KC_F, KC_P, KC_B, KC_J, KC_L, KC_U, KC_Y, QUOT_SCLN, 
+    LGUI_T(KC_A), LALT_T(KC_R), LCTL_T(KC_S), LSFT_T(KC_T), KC_G, KC_M, RSFT_T(KC_N), LCTL_T(KC_E), LALT_T(KC_I), LGUI_T(KC_O), 
+    KC_Z, KC_X, KC_C, KC_D, KC_V, KC_K, KC_H, COMM_MINS, DOT_EXLM, SLSH_UNDS, 
+    LT(_MEDIA,KC_ESC), LT(_NAV,KC_SPC), LT(_MOUSE,KC_TAB), LT(_SYM,KC_ENT), LT(_NUM,KC_BSPC), LT(_FUN,KC_DEL)), // Default
     [_QWERTY] = LAYOUT_split_3x5_3(
     KC_Q, KC_W, KC_E, KC_R, KC_T, KC_Y, KC_U, KC_I, KC_O, P_QUOT, 
     LGUI_T(KC_A), LALT_T(KC_S), LCTL_T(KC_D), LSFT_T(KC_F), KC_G, KC_H, RSFT_T(KC_J), LCTL_T(KC_K), LALT_T(KC_L), LGUI_T(KC_SCLN), 
     KC_Z, KC_X, KC_C, KC_V, KC_B, KC_N, KC_M, COMM_MINS, DOT_EXLM, SLSH_UNDS, 
     KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS), // Qwerty
     [_MEDIA] = LAYOUT_split_3x5_3(
-    KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, DF(_QWERTY), CG_SWAP, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, 
+    KC_TRNS, KC_TRNS, KC_TRNS, DF(_COLEMAKDH), DF(_QWERTY), CG_SWAP, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, 
     KC_LGUI, KC_LALT, KC_LCTL, KC_LSFT, DF(_DEFAULT), CG_NORM, KC_MPRV, KC_VOLD, KC_VOLU, KC_MNXT, 
     KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, DF(_GAME), KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, 
     KC_TRNS, KC_NO, KC_NO, KC_MSTP, KC_MPLY, KC_MUTE), // Media
     [_NAV] = LAYOUT_split_3x5_3(
     KC_UNDO, KC_CUT, KC_COPY, KC_PSTE, KC_REDO, KC_REDO, KC_PSTE, KC_COPY, KC_CUT, KC_UNDO, 
-    KC_LGUI, KC_LALT, KC_LCTL, KC_LSFT, KC_TRNS, KC_CAPS, KC_LEFT, KC_DOWN, KC_UP, KC_RGHT, 
+    KC_LGUI, KC_LALT, KC_LCTL, KC_LSFT, KC_SAVE, KC_CAPS, KC_LEFT, KC_DOWN, KC_UP, KC_RGHT, 
     KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_INS, KC_HOME, KC_PGDN, KC_PGUP, KC_END, 
     KC_NO, KC_TRNS, KC_NO, KC_ENT, KC_BSPC, KC_DEL), // Nav
     [_MOUSE] = LAYOUT_split_3x5_3(
