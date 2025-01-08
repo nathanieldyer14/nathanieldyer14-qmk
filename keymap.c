@@ -41,7 +41,7 @@ layer_state_t default_layer_state_set_user(layer_state_t state) {
     switch(biton32(state)){
         case _COLEMAKDH:
         laydef = 'C';
-        rgblight_sethsv (0, 0, 100); // White
+        rgblight_sethsv (0, 0, 50); // White
         break;
         case _QWERTY:
         laydef = 'Q';
@@ -91,7 +91,7 @@ layer_state_t layer_state_set_user(layer_state_t state) {
         } else if(laydef == 'W') {
           rgblight_sethsv (240 , 255, 100); // Mint
         } else {
-          rgblight_sethsv (0, 0, 100); // White for Default
+          rgblight_sethsv (0, 0, 50); // White for Default
         }
         break;
     }
@@ -109,6 +109,18 @@ static bool process_tap_or_long_press_key(
     return false;  // Skip default handling.
   }
   return true;  // Continue default handling.
+}
+
+uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+        case LGUI_T(KC_A):
+        case LGUI_T(KC_O):
+        case LGUI_T(KC_I):
+        case LGUI_T(KC_SCLN):
+            return TAPPING_TERM + 200;
+        default:
+            return TAPPING_TERM;
+    }
 }
 
 bool process_record_user(uint16_t keycode, keyrecord_t* record) {
@@ -156,7 +168,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_MEDIA] = LAYOUT_split_3x5_3(
     KC_TRNS, KC_TRNS, KC_TRNS, DF(_WORKMAN), DF(_QWERTY), CG_SWAP, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, 
     KC_LGUI, KC_LALT, KC_LCTL, KC_LSFT, DF(_COLEMAKDH), CG_NORM, KC_MPRV, KC_VOLD, KC_VOLU, KC_MNXT, 
-    KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, DF(_GAME), KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, 
+    KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, DF(_GAME), RGB_TOG, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, 
     KC_TRNS, KC_NO, KC_NO, KC_MSTP, KC_MPLY, KC_MUTE), // Media
     [_NAV] = LAYOUT_split_3x5_3(
     KC_UNDO, KC_CUT, KC_COPY, KC_PSTE, KC_REDO, KC_REDO, KC_PSTE, KC_COPY, KC_CUT, KC_UNDO, 
@@ -164,7 +176,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_UNDO, KC_CUT, KC_COPY, KC_PSTE, KC_REDO, KC_INS, KC_HOME, KC_PGDN, KC_PGUP, KC_END, 
     KC_NO, KC_TRNS, KC_NO, KC_ENT, KC_BSPC, KC_DEL), // Nav
     [_MOUSE] = LAYOUT_split_3x5_3(
-    KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, 
+    KC_UNDO, KC_CUT, KC_COPY, KC_PSTE, KC_REDO, KC_TRNS, MS_BTN4, KC_TRNS, KC_TRNS, MS_BTN5, 
     KC_LGUI, KC_LALT, KC_LCTL, KC_LSFT, KC_TRNS, KC_TRNS, MS_LEFT, MS_DOWN, MS_UP, MS_RGHT, 
     KC_TRNS, MS_ACL2, MS_ACL1, MS_ACL0, KC_TRNS, KC_TRNS, MS_WHLL, MS_WHLD, MS_WHLU, MS_WHLR, 
     KC_NO, KC_NO, KC_TRNS, MS_BTN2, MS_BTN1, MS_BTN3), // Mouse
@@ -187,9 +199,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_TAB, KC_Q, KC_W, KC_E, KC_R, KC_T, KC_Y, KC_U, KC_I, O_P, 
     KC_LSFT, KC_A, KC_S, KC_D, KC_F, KC_G, KC_H, KC_J, KC_K, KC_L,
     KC_LCTL, KC_Z, KC_X, KC_C, KC_V, KC_B, KC_N, KC_M, KC_COMM, DOT_SLSH, 
-    LT(_GAMENUM,KC_ESC), KC_SPC, KC_SPC, DF(_COLEMAKDH), KC_TRNS, KC_TRNS), // Qwerty Offset for Gaming
+    LT(_GAMENUM,KC_ESC), KC_SPC, KC_T, DF(_COLEMAKDH), KC_TRNS, KC_TRNS), // Qwerty Offset for Gaming
     [_GAMENUM] = LAYOUT_split_3x5_3(
-    KC_TRNS, KC_1, KC_2, KC_3, KC_4, KC_5, KC_6, KC_7, KC_8, KC_9, 
+    KC_GRV, KC_1, KC_2, KC_3, KC_4, KC_5, KC_6, KC_7, KC_8, KC_9, 
     KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, 
     KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
     KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS), // Num Offset for Gaming
