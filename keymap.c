@@ -220,10 +220,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
     KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS), // Num Offset for Gaming
     [_PLOVER] = LAYOUT_split_3x5_3(
-    KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_U,    KC_I,    KC_O,    KC_P,    KC_LBRC,
-    KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT,
-    XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX, XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,
-    KC_C,    KC_V,    KC_1,    KC_N,    KC_M,    DF(_COLEMAKDH)),
+    KC_T,    KC_T,    KC_W,    KC_E,    KC_R,    KC_U,    KC_I,    KC_O,    KC_P,    KC_LBRC,
+    KC_G,    KC_A,    KC_S,    KC_D,    KC_F,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT,
+    DF(_COLEMAKDH),XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX, XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,
+    KC_1,    KC_C,    KC_V,    KC_N,    KC_M,    KC_Y),
+    // * * T P H   -F -P -L -T -D
+    // * S K W R   -R -B -G -S -Z
+    //     # A O   E U *
 };
 
 #if defined(ENCODER_ENABLE) && defined(ENCODER_MAP_ENABLE)
