@@ -122,6 +122,11 @@ static bool process_tap_or_long_press_key(
 
 uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
+        case LSFT_T(KC_T):
+        case LSFT_T(KC_F):
+        case RSFT_T(KC_N):
+        case RSFT_T(KC_J):
+            return TAPPING_TERM - 100;
         case LGUI_T(KC_A):
         case LGUI_T(KC_O):
         case LGUI_T(KC_I):
