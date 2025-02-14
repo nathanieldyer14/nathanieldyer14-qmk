@@ -1,0 +1,16 @@
+:w':        -> with
+:wo':       -> without
+:j':        -> just
+:t':        -> that
+:st':       -> such that
+:bc':       -> because
+:bt':       -> between
+:v':        -> very
+:prob':     -> probably
+:poss':     -> possible
+:possy':    -> possibly
+:possty':   -> possibility
+:gov':      -> government
+:ling':     -> linguistics
+:info':     -> information
+:com':      -> communication

@@ -38,6 +38,10 @@
 
 #define BOTH_SHIFTS_TURNS_ON_CAPS_WORD
 
+// autocorrect generation commands:
+// cd qmk_firmware/keyboards/cheapino/keymaps/nathanieldyer14/
+// qmk generate-autocorrect-data autocorrect_dict.txt
+
 char laydef = 'C'; // variable current default layer; 'C' for _COLEMAKDH, 'Q' for _QWERTY, 'G' for _GAME, 'W' for _WORKMAN
 
 layer_state_t default_layer_state_set_user(layer_state_t state) {
@@ -126,7 +130,7 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
         case LSFT_T(KC_F):
         case RSFT_T(KC_N):
         case RSFT_T(KC_J):
-            return TAPPING_TERM - 100;
+            return TAPPING_TERM - 50;
         case LGUI_T(KC_A):
         case LGUI_T(KC_O):
         case LGUI_T(KC_I):
@@ -190,18 +194,18 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_MEDIA] = LAYOUT_split_3x5_3(
     DF(_PLOVER), NK_ON, NK_OFF, DF(_WORKMAN), DF(_QWERTY), CG_SWAP, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, 
     KC_LGUI, KC_LALT, KC_LCTL, KC_LSFT, DF(_COLEMAKDH), CG_NORM, KC_MPRV, KC_VOLD, KC_VOLU, KC_MNXT, 
-    KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, DF(_GAME), RGB_TOG, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, 
-    KC_TRNS, KC_NO, KC_NO, KC_MSTP, KC_MPLY, KC_MUTE), // Media
+    AC_TOGG, AC_ON, AC_OFF, KC_TRNS, DF(_GAME), RGB_TOG, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, 
+    KC_TRNS, KC_TRNS, KC_TRNS, KC_MSTP, KC_MPLY, KC_MUTE), // Media
     [_NAV] = LAYOUT_split_3x5_3(
     KC_UNDO, KC_CUT, KC_COPY, KC_PSTE, KC_REDO, KC_REDO, KC_PSTE, KC_COPY, KC_CUT, KC_UNDO, 
     KC_LGUI, KC_LALT, KC_LCTL, KC_LSFT, KC_SAVE, KC_CAPS, KC_LEFT, KC_DOWN, KC_UP, KC_RGHT, 
     KC_UNDO, KC_CUT, KC_COPY, KC_PSTE, KC_REDO, KC_INS, KC_HOME, KC_PGDN, KC_PGUP, KC_END, 
-    KC_NO, KC_TRNS, KC_NO, KC_ENT, KC_BSPC, KC_DEL), // Nav
+    KC_TRNS, KC_TRNS, KC_TRNS, KC_ENT, KC_BSPC, KC_DEL), // Nav
     [_MOUSE] = LAYOUT_split_3x5_3(
     KC_UNDO, KC_CUT, KC_COPY, KC_PSTE, KC_REDO, KC_TRNS, MS_BTN4, KC_TRNS, KC_TRNS, MS_BTN5, 
     KC_LGUI, KC_LALT, KC_LCTL, KC_LSFT, KC_TRNS, KC_TRNS, MS_LEFT, MS_DOWN, MS_UP, MS_RGHT, 
     KC_TRNS, MS_ACL2, MS_ACL1, MS_ACL0, KC_TRNS, KC_TRNS, MS_WHLL, MS_WHLD, MS_WHLU, MS_WHLR, 
-    KC_NO, KC_NO, KC_TRNS, MS_BTN2, MS_BTN1, MS_BTN3), // Mouse
+    KC_TRNS, KC_TRNS, KC_TRNS, MS_BTN2, MS_BTN1, MS_BTN3), // Mouse
     [_SYM] = LAYOUT_split_3x5_3(
     S(KC_LBRC), S(KC_7), S(KC_8), S(KC_9), S(KC_RBRC), KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, 
     S(KC_SCLN), S(KC_4), S(KC_5), S(KC_6), S(KC_EQL), KC_TRNS, KC_RSFT, KC_RCTL, KC_RALT, KC_RGUI, 
