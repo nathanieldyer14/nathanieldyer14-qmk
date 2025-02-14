@@ -28,9 +28,9 @@
 #define _MEDIA 3
 #define _NAV 4
 #define _MOUSE 5
-#define _SYM 6
+#define _SYM 8
 #define _NUM 7
-#define _FUN 8
+#define _FUN 6
 #define _GAME 9
 #define _GAMENUM 10
 #define _PLOVER 11
