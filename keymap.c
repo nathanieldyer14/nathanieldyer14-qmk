@@ -20,6 +20,9 @@
 #define G_EQL LT(0,KC_G)
 #define V_BSLS LT(0,KC_V)
 #define B_BSLS LT(0,KC_B)
+#define Q_LBRC LT(0,KC_Q)
+#define B_RBRC LT(1,KC_B)
+#define T_RBRC LT(0,KC_T)
 #define DOT_SLSH LT(1,KC_DOT)
 #define LTFN_CTLBSPC LT(_FUN, KC_BSPC)
 
@@ -162,9 +165,13 @@ bool process_record_user(uint16_t keycode, keyrecord_t* record) {
     case G_EQL:  // G on tap, Equal on long press.
       return process_tap_or_long_press_key(record, KC_EQL);
     case V_BSLS:  // V on tap, Backslash on long press.
-      return process_tap_or_long_press_key(record, KC_BSLS);
     case B_BSLS:  // B on tap, Backslash on long press.
       return process_tap_or_long_press_key(record, KC_BSLS);
+    case Q_LBRC:  // Q on tap, Left Bracket on long press.
+      return process_tap_or_long_press_key(record, KC_LBRC);
+    case B_RBRC:  // B on tap, Right Bracket on long press.
+    case T_RBRC:  // T on tap, Right Bracket on long press.
+      return process_tap_or_long_press_key(record, KC_RBRC);
     case DOT_SLSH:  // Period on tap, Slash on long press.
       return process_tap_or_long_press_key(record, KC_SLSH);
     case LTFN_CTLBSPC: //Lctrl+Bspc when tapped, LT(_FN) when held
@@ -183,17 +190,17 @@ bool process_record_user(uint16_t keycode, keyrecord_t* record) {
  */
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_COLEMAKDH] = LAYOUT_split_3x5_3(
-    KC_Q, KC_W, KC_F, KC_P, KC_B, KC_J, KC_L, KC_U, KC_Y, QUOT_SCLN, 
+    Q_LBRC, KC_W, KC_F, KC_P, B_RBRC, KC_J, KC_L, KC_U, KC_Y, QUOT_SCLN, 
     LGUI_T(KC_A), LALT_T(KC_R), LCTL_T(KC_S), LSFT_T(KC_T), G_EQL, KC_M, RSFT_T(KC_N), LCTL_T(KC_E), LALT_T(KC_I), LGUI_T(KC_O), 
     LSFT_T(KC_Z), KC_X, KC_C, KC_D, V_BSLS, KC_K, KC_H, COMM_MINS, DOT_EXLM, SLSH_UNDS, 
     LT(_MEDIA,KC_ESC), LT(_NAV,KC_SPC), LT(_MOUSE,KC_TAB), LT(_SYM,KC_ENT), LT(_NUM,KC_BSPC), LTFN_CTLBSPC), // Default
     [_WORKMAN] = LAYOUT_split_3x5_3(
-    KC_Q, KC_D, KC_R, KC_W, KC_B, KC_J, KC_F, KC_U, KC_P, QUOT_SCLN, 
+    Q_LBRC, KC_D, KC_R, KC_W, B_RBRC, KC_J, KC_F, KC_U, KC_P, QUOT_SCLN, 
     LGUI_T(KC_A), LALT_T(KC_S), LCTL_T(KC_H), LSFT_T(KC_T), G_EQL, KC_Y, RSFT_T(KC_N), LCTL_T(KC_E), LALT_T(KC_O), LGUI_T(KC_I), 
     LSFT_T(KC_Z), KC_X, KC_M, KC_C, V_BSLS, KC_K, KC_L, COMM_MINS, DOT_EXLM, SLSH_UNDS, 
     KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS), // Default
     [_QWERTY] = LAYOUT_split_3x5_3(
-    KC_Q, KC_W, KC_E, KC_R, KC_T, KC_Y, KC_U, KC_I, KC_O, P_QUOT, 
+    Q_LBRC, KC_W, KC_E, KC_R, T_RBRC, KC_Y, KC_U, KC_I, KC_O, P_QUOT, 
     LGUI_T(KC_A), LALT_T(KC_S), LCTL_T(KC_D), LSFT_T(KC_F), G_EQL, KC_H, RSFT_T(KC_J), LCTL_T(KC_K), LALT_T(KC_L), LGUI_T(KC_SCLN), 
     LSFT_T(KC_Z), KC_X, KC_C, KC_V, B_BSLS, KC_N, KC_M, COMM_MINS, DOT_EXLM, SLSH_UNDS, 
     KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS), // Qwerty
