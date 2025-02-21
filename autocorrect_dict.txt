@@ -6,6 +6,9 @@
 :bc':       -> because
 :bt':       -> between
 :v':        -> very
+:q':        -> question
+:smth:      -> something
+:evth:      -> everything
 :prob':     -> probably
 :poss':     -> possible
 :possy':    -> possibly
