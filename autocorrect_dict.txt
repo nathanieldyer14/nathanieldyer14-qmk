@@ -13,6 +13,9 @@
 :poss':     -> possible
 :possy':    -> possibly
 :possty':   -> possibility
+:gen':      -> general
+:geny':     -> generally
+:genty':    -> generality
 :gov':      -> government
 :ling':     -> linguistics
 :info':     -> information
