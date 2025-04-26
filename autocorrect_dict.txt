@@ -9,7 +9,12 @@
 :q':        -> question
 :smth:      -> something
 :evth:      -> everything
+:dev':      -> develop
+:devm':      -> development
+:devd':     -> developed
+:devg':     -> developing
 :prob':     -> probably
+:probty':     -> probability
 :poss':     -> possible
 :possy':    -> possibly
 :possty':   -> possibility
@@ -20,3 +25,5 @@
 :ling':     -> linguistics
 :info':     -> information
 :com':      -> communication
+:freq:      -> frequency
+:trad':      -> traditional

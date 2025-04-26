@@ -30,16 +30,15 @@
 #define _COLEMAKDH 0
 #define _QWERTY 1
 #define _WORKMAN 2
-#define _CODING 3
-#define _MEDIA 4
-#define _NAV 5
-#define _MOUSE 6
-#define _SYM 9
-#define _NUM 8
-#define _FUN 7
-#define _GAME 10
-#define _GAMENUM 11
-#define _PLOVER 12
+#define _MEDIA 3
+#define _NAV 4
+#define _MOUSE 5
+#define _SYM 8
+#define _NUM 7
+#define _FUN 6
+#define _GAME 9
+#define _GAMENUM 10
+#define _PLOVER 11
 
 
 #define BOTH_SHIFTS_TURNS_ON_CAPS_WORD
@@ -48,34 +47,30 @@
 // cd qmk_firmware/keyboards/cheapino/keymaps/nathanieldyer14/
 // qmk generate-autocorrect-data autocorrect_dict.txt
 
-char laydef = 'C'; // variable current default layer; 'C' for _COLEMAKDH, 'Q' for _QWERTY, 'G' for _GAME, 'W' for _WORKMAN, 'D' for _CODING
+char laydef = 'C'; // variable current default layer; 'C' for _COLEMAKDH, 'Q' for _QWERTY, 'G' for _GAME, 'W' for _WORKMAN
 
 layer_state_t default_layer_state_set_user(layer_state_t state) {
     switch(biton32(state)){
         case _COLEMAKDH:
-          laydef = 'C';
-          rgblight_sethsv (0, 0, 50); // White
-          break;
+        laydef = 'C';
+        rgblight_sethsv (0, 0, 50); // White
+        break;
         case _QWERTY:
-          laydef = 'Q';
-          rgblight_sethsv (80, 255, 100); // Orange
-          break;
+        laydef = 'Q';
+        rgblight_sethsv (80, 255, 100); // Orange
+        break;
         case _GAME:
-          laydef = 'G';
-          rgblight_sethsv (0, 255, 100); // Green
-          break;
+        laydef = 'G';
+        rgblight_sethsv (0, 255, 100); // Green
+        break;
         case _PLOVER:
-          laydef = 'P';
-          rgblight_sethsv (85, 255, 100); // Red
-          break;
+        laydef = 'P';
+        rgblight_sethsv (85, 255, 100); // Red
+        break;
         case _WORKMAN:
-          laydef = 'W';
-          rgblight_sethsv (240, 255, 100); // Mint
-          break;
-        case _CODING:
-          laydef = 'D';
-          rgblight_sethsv(155, 255, 100); // ?COLOR
-          break;
+        laydef = 'W';
+        rgblight_sethsv (240, 255, 100); // Mint
+        break;
     };
     return state;
 };
@@ -113,8 +108,6 @@ layer_state_t layer_state_set_user(layer_state_t state) {
           rgblight_sethsv (240 , 255, 100); // Mint
         } else if(laydef == 'P') {
           rgblight_sethsv (85, 255, 100); // Red
-        } else if(laydef == 'D') {
-          rgblight_sethsv (155, 255, 100); // ?COLOR
         } else {
           rgblight_sethsv (0, 0, 50); // White for Default
         }
@@ -211,15 +204,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     LGUI_T(KC_A), LALT_T(KC_S), LCTL_T(KC_D), LSFT_T(KC_F), G_EQL, KC_H, RSFT_T(KC_J), LCTL_T(KC_K), LALT_T(KC_L), LGUI_T(KC_SCLN), 
     LSFT_T(KC_Z), KC_X, KC_C, KC_V, B_BSLS, KC_N, KC_M, COMM_MINS, DOT_EXLM, SLSH_UNDS, 
     KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS), // Qwerty
-    [_CODING] = LAYOUT_split_3x5_3(
-    Q_LBRC, KC_W, KC_F, KC_P, B_RBRC, KC_J, KC_L, KC_U, KC_Y, QUOT_SCLN, 
-    LGUI_T(KC_A), LALT_T(KC_R), LCTL_T(KC_S), LSFT_T(KC_T), G_EQL, KC_M, RSFT_T(KC_N), LCTL_T(KC_E), LALT_T(KC_I), LGUI_T(KC_O), 
-    LSFT_T(KC_Z), KC_X, KC_C, KC_D, V_BSLS, KC_K, KC_H, COMM_MINS, DOT_EXLM, SLSH_UNDS, 
-    LT(_MEDIA, KC_ENT), LT(_NAV,KC_SPC), LT(_MOUSE,KC_TAB), MO(_SYM), LT(_NUM,KC_BSPC), MO(_NUM)), // Coding  
     [_MEDIA] = LAYOUT_split_3x5_3(
     DF(_PLOVER), NK_ON, NK_OFF, DF(_WORKMAN), DF(_QWERTY), CG_SWAP, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, 
     KC_LGUI, KC_LALT, KC_LCTL, KC_LSFT, DF(_COLEMAKDH), CG_NORM, KC_MPRV, KC_VOLD, KC_VOLU, KC_MNXT, 
-    AC_TOGG, AC_ON, AC_OFF, DF(_CODING), DF(_GAME), RGB_TOG, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, 
+    AC_TOGG, AC_ON, AC_OFF, KC_TRNS, DF(_GAME), RGB_TOG, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, 
     KC_TRNS, KC_TRNS, KC_TRNS, KC_MSTP, KC_MPLY, KC_MUTE), // Media
     [_NAV] = LAYOUT_split_3x5_3(
     KC_UNDO, KC_CUT, KC_COPY, KC_PSTE, KC_REDO, S(KC_TAB), C(KC_LEFT), C(KC_DOWN), C(KC_UP), C(KC_RGHT), 
