@@ -25,5 +25,5 @@
 :ling':     -> linguistics
 :info':     -> information
 :com':      -> communication
-:freq:      -> frequency
+:freq':      -> frequency
 :trad':      -> traditional
